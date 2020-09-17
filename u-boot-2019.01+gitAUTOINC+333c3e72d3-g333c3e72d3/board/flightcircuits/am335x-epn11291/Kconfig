@@ -1,0 +1,17 @@
+if TARGET_EPN11291
+
+config SYS_BOARD
+	default "am335x-epn11291"
+
+config SYS_VENDOR
+	default "flightcircuits"
+
+config SYS_SOC
+	default "am33xx"
+
+config SYS_CONFIG_NAME
+	default "am335x_evm"
+
+##source "board/ti/common/Kconfig"
+
+endif

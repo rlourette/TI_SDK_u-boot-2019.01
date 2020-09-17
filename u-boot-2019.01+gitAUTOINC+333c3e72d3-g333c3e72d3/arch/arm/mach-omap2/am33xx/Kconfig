@@ -26,6 +26,35 @@ config AM33XX_CHILISOM
 
 choice
 	prompt "AM33xx board select"
+config TARGET_AM335X_EPN11291
+	bool "Support am335X epn11291"
+	select BOARD_LATE_INIT
+	select DM
+	select DM_GPIO
+	select DM_SERIAL
+# added imply SPL_OF_CONTROL RWL XXXTODO
+	imply SPL_OF_CONTROL
+	imply CMD_DM
+	imply SPL_DM
+	imply SPL_DM_SEQ_ALIAS
+	imply SPL_ENV_SUPPORT
+	imply SPL_FS_EXT4
+	imply SPL_FS_FAT
+	imply SPL_GPIO_SUPPORT
+	imply SPL_LIBCOMMON_SUPPORT
+	imply SPL_LIBDISK_SUPPORT
+	imply SPL_LIBGENERIC_SUPPORT
+	imply SPL_MMC_SUPPORT
+	imply SPL_OF_LIBFDT
+	imply SPL_SEPARATE_BSS
+	imply SPL_SERIAL_SUPPORT
+	imply SPL_SYS_MALLOC_SIMPLE
+	imply SPL_WATCHDOG_SUPPORT
+	imply SPL_YMODEM_SUPPORT
+	help
+	  This option specifies support for the Flight Circuits
+	  EPN11291 board.
+
 
 config TARGET_AM335X_EVM
 	bool "Support am335x_evm"

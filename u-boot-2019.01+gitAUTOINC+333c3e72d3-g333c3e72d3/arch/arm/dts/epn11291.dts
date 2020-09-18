@@ -36,6 +36,8 @@
 
 
 &am33xx_pinmux {
+	u-boot,dm-spl;
+
 	pinctrl-names = "default";
 
 	cpsw_default: cpsw_default {
@@ -91,6 +93,7 @@
 
 	/* see section 9.3.1 - Control Module Registers */
 	mmc0_pins: pinmux-mmc0-pins {
+		u-boot,dm-spl;
 		pinctrl-single,pins = <
 			0x06C (PIN_INPUT_PULLUP | MUX_MODE7)    /* (V17) gpmc_a11 gpio1_2  CD, pullup on board */
 			0x0fc (PIN_INPUT_PULLUP | MUX_MODE0)	/* (G16) mmc0_dat0.mmc0_dat0 */
@@ -103,6 +106,7 @@
 	};
 
 	emmc_pins: pinmux_emmc_pins {
+		u-boot,dm-spl;
 		pinctrl-single,pins = <
 			0x080 (PIN_INPUT | MUX_MODE2)			//eMMC_CLK
 			0x084 (PIN_INPUT_PULLUP | MUX_MODE2)	//eMMC_CMD
@@ -119,6 +123,7 @@
 
 
 	uart0_pins: pinmux_uart0_pins {
+		u-boot,dm-spl;
 		pinctrl-single,pins = <
 			0x170 (PIN_INPUT_PULLUP | MUX_MODE0)	//UART0_RX
 			0x174 (PIN_OUTPUT_PULLDOWN | MUX_MODE0)	//UAERT0_TX
@@ -153,6 +158,7 @@
 
 /* SD Card */
 &mmc1 {
+	u-boot,dm-spl;
 	max-frequency = <50000000>;
 	bus-width = <4>;
 	// added RWL
@@ -165,6 +171,7 @@
 };
 
 &mmc2 {
+	u-boot,dm-spl;
 	pinctrl-names = "default";
 	pinctrl-0 = <&emmc_pins>;
 	bus-width = <8>;
@@ -176,11 +183,13 @@
 };
 
 &uart0 {
+	u-boot,dm-spl;
 	pinctrl-names = "default";
 	pinctrl-0 = <&uart0_pins>;
 	status = "okay";
 };
 
 &cppi41dma  {
+	u-boot,dm-spl;
 	status = "okay";
 };

@@ -1,5 +1,5 @@
 /*
- * am335x_epn11291.h
+ * epn11291.h
  *
  * Copyright (C) 2011 Texas Instruments Incorporated - http://www.ti.com/
  *
@@ -66,10 +66,10 @@
 #define V_SCLK				(V_OSCK)
 
 /* Custom script for NOR */
-#define CONFIG_SYS_LDSCRIPT		"board/flightcircuits/am335x-epn11291/u-boot.lds"
+#define CONFIG_SYS_LDSCRIPT		"board/flightcircuits/epn11291/u-boot.lds"
 
 /* Always 128 KiB env size */
-//#define CONFIG_ENV_SIZE			SZ_128K
+#define CONFIG_ENV_SIZE			SZ_128K
 
 #define NANDARGS "\0"
 

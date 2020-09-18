@@ -26,8 +26,8 @@ config AM33XX_CHILISOM
 
 choice
 	prompt "AM33xx board select"
-config TARGET_AM335X_EPN11291
-	bool "Support am335X epn11291"
+config TARGET_EPN11291
+	bool "Support epn11291"
 	select BOARD_LATE_INIT
 	select DM
 	select DM_GPIO

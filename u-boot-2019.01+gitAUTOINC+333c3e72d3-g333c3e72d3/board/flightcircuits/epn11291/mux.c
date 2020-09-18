@@ -9,6 +9,7 @@
 #include <asm/arch/hardware.h>
 #include <asm/arch/mux.h>
 #include <asm/arch/gpio.h>
+#include <asm-generic/gpio.h>
 #include <asm/io.h>
 #include <i2c.h>
 #include "board.h"
@@ -105,9 +106,9 @@ int board_detect(void)
 	return board;
 }
 
-int gpio_request(unsigned gpio, const char *label);
-int gpio_direction_output(unsigned gpio, int value);
-int gpio_set_value(unsigned gpio, int value);
+//int gpio_request(unsigned gpio, const char *label);
+//int gpio_direction_output(unsigned gpio, int value);
+//int gpio_set_value(unsigned gpio, int value);
 
 
 void enable_board_pin_mux(void){

@@ -99,6 +99,8 @@ void am33xx_spl_board_init(void)
 #ifdef CONFIG_SPL_OS_BOOT
 int spl_start_uboot(void)
 {
+	//while (true); // This is getting called
+
 #ifdef CONFIG_SPL_SERIAL_SUPPORT
 	/* break into full u-boot on 'c' */
 	if (serial_tstc() && serial_getc() == 'c')
@@ -157,32 +159,16 @@ const struct dpll_params *get_dpll_mpu_params(void)
 	return &dpll_mpu_opp[ind][0];
 }
 
-
-
-
-void gpi2c_init(void)
-{
-	/* When needed to be invoked prior to BSS initialization */
-	static bool first_time = true;
-
-	if (first_time) {
-		enable_i2c0_pin_mux();
-#ifndef CONFIG_DM_I2C
-		i2c_init(CONFIG_SYS_OMAP24_I2C_SPEED,
-			 CONFIG_SYS_OMAP24_I2C_SLAVE);
-#endif
-		first_time = false;
-	}
-}
-
 void set_uart_mux_conf(void)
 {
 	// this is compiled in for SPL foobar
 	// while (true); // This is getting called
-	// puts("[debug] set_uart_mux_conf(void) entry.\n");
+	puts("[debug] set_uart_mux_conf(void) entry.\n");
 
 	enable_uart0_pin_mux();
 
+	// while (true); // This is getting called
+	
 	//enable_uart0_pin_mux(); // XXXTODO added back rwl
 }
 
@@ -232,13 +218,21 @@ int ft_board_setup(void *fdt, bd_t *bd)
 
 #endif
 
+#ifdef CONFIG_DEBUG_UART
+void board_debug_uart_init(void)
+{
+	/* done by pin controller driver if not debugging */
+	enable_uart0_pin_mux();
+}
+#endif
+
 /*
  * Basic board specific setup.  Pinmux has been handled already.
  */
 int board_init(void)
 {
-	// this is being compiled in foobar
-	// while (true); This is not being called when the failure occurs
+	//this is being compiled in foobar
+	//while (true); // This is not being called when the failure occurs
 
 	// puts("[debug] board_init(void) entry.\n");
 
@@ -312,20 +306,6 @@ int board_late_init(void)
 
 		if (is_valid_ethaddr(mac_addr))
 			eth_env_set_enetaddr("ethaddr", mac_addr);
-	}
-
-	mac_lo = readl(&cdev->macid1l);
-	mac_hi = readl(&cdev->macid1h);
-	mac_addr[0] = mac_hi & 0xFF;
-	mac_addr[1] = (mac_hi & 0xFF00) >> 8;
-	mac_addr[2] = (mac_hi & 0xFF0000) >> 16;
-	mac_addr[3] = (mac_hi & 0xFF000000) >> 24;
-	mac_addr[4] = mac_lo & 0xFF;
-	mac_addr[5] = (mac_lo & 0xFF00) >> 8;
-
-	if (!env_get("eth1addr")) {
-		if (is_valid_ethaddr(mac_addr))
-			eth_env_set_enetaddr("eth1addr", mac_addr);
 	}
 
 	printf("MAC: %x:%x:%x:%x:%x:%x\n",mac_addr[0],mac_addr[1],mac_addr[2],mac_addr[3],mac_addr[4],mac_addr[5]);

@@ -36,7 +36,7 @@ SECTIONS
 		*(.__image_copy_start)
 		*(.vectors)
 		CPUDIR/start.o (.text*)
-		board/flightcircuits/am335x_epn11291/built-in.o (.text*)
+		board/flightcircuits/epn11291/built-in.o (.text*)
 	}
 
 	/* This needs to come before *(.text*) */
